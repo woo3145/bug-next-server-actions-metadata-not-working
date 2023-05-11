@@ -14,6 +14,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const items = [
+    { category: 'food', id: 1 },
+    { category: 'toy', id: 14 },
+  ];
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -22,6 +26,13 @@ export default function RootLayout({
           <Link href="/my">My</Link>
           <Link href="/my/settings">My/Settings</Link>
           <Link href="/shop">Shop</Link>
+          {items.map((item, idx) => {
+            return (
+              <Link key={idx} href={`/shop/${item.category}/${item.id}`}>
+                {item.category}-{item.id} (hardRoute)
+              </Link>
+            );
+          })}
         </nav>
 
         {children}
